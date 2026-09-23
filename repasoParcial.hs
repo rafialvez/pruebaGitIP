@@ -26,3 +26,23 @@ multiplicarPorEscalar k ((fila):matriz) = [multiplicarFila k (fila)] ++ multipli
 multiplicarFila :: Integer -> [Integer] -> [Integer]
 multiplicarFila k [] = []
 multiplicarFila k (x:xs) = [k*x] ++ multiplicarFila k (xs)
+
+--7.
+iésimaFila :: Integer -> [[a]] -> [a]
+iésimaFila i [] = []
+iésimaFila i ((fila):matriz) = contadorFila i ((fila):matriz) 0
+
+contadorFila :: Integer -> [[a]] -> Integer -> [a]
+contadorFila i [] k = []
+contadorFila i ((fila):matriz) k |i==k = fila
+                                 |otherwise = contadorFila i (matriz) (k+1)
+
+--8.
+iésimaColumna :: Integer -> [[a]] -> [a]
+iésimaColumna j [] = []
+iésimaColumna j ((fila):matriz) = contadorColumna j (fila) 0 ++ iésimaColumna j (matriz)
+
+contadorColumna :: Integer -> [a] -> Integer -> [a]
+contadorColumna i [] k = []
+contadorColumna i (x:xs) k |i==k = [x]
+                           |otherwise = contadorColumna i (xs) (k+1)
